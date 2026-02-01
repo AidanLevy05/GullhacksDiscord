@@ -10,6 +10,7 @@ load_dotenv()
 # Bot configuration
 TOKEN = os.getenv('DISCORD_TOKEN')
 COMMAND_PREFIX = '!'
+HELP_CHANNEL_NAME = 'help'  # The channel where the bot answers questions
 
 # Initialize bot with intents
 intents = discord.Intents.default()
@@ -38,6 +39,26 @@ def find_answer(question: str) -> str:
     return responses['default_response']
 
 
+def is_help_channel(channel) -> bool:
+    """Check if the channel is the designated help channel."""
+    return channel.name == HELP_CHANNEL_NAME
+
+
+async def redirect_to_help(ctx) -> bool:
+    """
+    Check if user is in help channel. If not, redirect them.
+    Returns True if redirected (command should stop), False if in correct channel.
+    """
+    if not is_help_channel(ctx.channel):
+        help_channel = discord.utils.get(ctx.guild.channels, name=HELP_CHANNEL_NAME)
+        if help_channel:
+            await ctx.send(f"Please head over to {help_channel.mention} for help!")
+        else:
+            await ctx.send(f"Please go to the #{HELP_CHANNEL_NAME} channel for help!")
+        return True
+    return False
+
+
 @bot.event
 async def on_ready():
     """Called when the bot is ready and connected."""
@@ -64,6 +85,10 @@ async def ask(ctx, *, question: str = None):
     Ask the bot a question about the hackathon.
     Usage: !ask where can I park?
     """
+    # Redirect to help channel if not already there
+    if await redirect_to_help(ctx):
+        return
+
     if question is None:
         await ctx.send("Please provide a question! Example: `!ask where can I park?`")
         return
@@ -84,6 +109,10 @@ async def ask(ctx, *, question: str = None):
 @bot.command(name='info')
 async def info(ctx):
     """Display general hackathon information."""
+    # Redirect to help channel if not already there
+    if await redirect_to_help(ctx):
+        return
+
     embed = discord.Embed(
         title="Welcome to Gullhacks!",
         description="Here's what I can help you with:",

@@ -5,6 +5,7 @@ A Discord bot for the Gullhacks hackathon that answers frequently asked question
 ## Features
 
 - **Q&A System**: Answer common hackathon questions using keywords
+- **Help Channel Only**: Bot only answers in `#help` channel, redirects users from other channels
 - **Easy to Customize**: Edit `responses.json` to add/modify Q&A pairs
 - **Embed Responses**: Clean, formatted responses using Discord embeds
 - **Welcome Messages**: Greet new members automatically
@@ -57,7 +58,13 @@ cp .env.example .env
 5. Copy the generated URL and open it in your browser
 6. Select your server and authorize the bot
 
-### 5. Run the Bot
+### 5. Create a Help Channel
+
+Make sure your Discord server has a channel named `#help`. The bot will only answer questions in this channel and redirect users from other channels.
+
+To change the channel name, edit the `HELP_CHANNEL_NAME` variable in `bot.py`.
+
+### 6. Run the Bot
 
 ```bash
 python bot.py
