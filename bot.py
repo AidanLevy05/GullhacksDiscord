@@ -69,7 +69,7 @@ async def parking(ctx):
         return
     embed = discord.Embed(
         title="Parking Information",
-        description="TODO: Add parking information here",
+        description="Parking is available in the Guerreri Academic Commons parking lot.",
         color=discord.Color.blue()
     )
     await ctx.send(embed=embed)
@@ -112,7 +112,7 @@ async def location(ctx):
         return
     embed = discord.Embed(
         title="Venue Location",
-        description="TODO: Add venue location and address here",
+        description="1101 Camden Ave, Salisbury, MD, 21801",
         color=discord.Color.blue()
     )
     await ctx.send(embed=embed)
