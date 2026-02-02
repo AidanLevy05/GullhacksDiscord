@@ -270,8 +270,6 @@ async def info(ctx):
 @bot.command(name='help')
 async def help_command(ctx):
     """Show help and available commands."""
-    if await redirect_to_help(ctx):
-        return
     embed = discord.Embed(
         title="Gullhacks Bot Help",
         description="Here are the available commands:",
@@ -280,7 +278,18 @@ async def help_command(ctx):
     embed.add_field(name="!commands", value="List all commands", inline=True)
     embed.add_field(name="!info", value="General hackathon info", inline=True)
     embed.add_field(name="!faq", value="Frequently asked questions", inline=True)
+    embed.add_field(name="!date", value="Hackathon date", inline=True)
+    embed.add_field(name="!schedule", value="Event schedule", inline=True)
+    embed.add_field(name="!food", value="Food & meals", inline=True)
     await ctx.send(embed=embed)
+
+    # If not in help channel, tell them to go there for full access
+    if not is_help_channel(ctx.channel):
+        help_channel = discord.utils.get(ctx.guild.channels, name=HELP_CHANNEL_NAME)
+        if help_channel:
+            await ctx.send(f"Head over to {help_channel.mention} to use all the help commands!")
+        else:
+            await ctx.send(f"Head over to #{HELP_CHANNEL_NAME} to use all the help commands!")
 
 
 @bot.command(name='commands')
