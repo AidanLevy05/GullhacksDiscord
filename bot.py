@@ -16,6 +16,16 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix=COMMAND_PREFIX, intents=intents, help_command=None)
 
+# Cooldown configuration
+COOLDOWN_SECONDS = 3
+
+
+def cooldown_for_non_admins(ctx):
+    """Return cooldown for non-admin users, None for admins (no cooldown)."""
+    if ctx.author.guild_permissions.administrator:
+        return None  # No cooldown for admins
+    return commands.Cooldown(1, COOLDOWN_SECONDS)  # 1 use per 3 seconds
+
 
 def is_help_channel(channel) -> bool:
     """Check if the channel is the designated help channel."""
@@ -45,11 +55,19 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name="!commands for help"))
 
 
+@bot.event
+async def on_command_error(ctx, error):
+    """Handle command errors."""
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(f"Slow down! Try again in {error.retry_after:.1f} seconds.")
+
+
 # =============================================================================
 # HACKATHON COMMANDS - Edit the responses below!
 # =============================================================================
 
 @bot.command(name='date')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def date(ctx):
     """Show the hackathon date."""
     if await redirect_to_help(ctx):
@@ -63,6 +81,7 @@ async def date(ctx):
 
 
 @bot.command(name='parking')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def parking(ctx):
     """Show parking information."""
     if await redirect_to_help(ctx):
@@ -76,6 +95,7 @@ async def parking(ctx):
 
 
 @bot.command(name='food')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def food(ctx):
     """Show food and meal information."""
     if await redirect_to_help(ctx):
@@ -106,6 +126,7 @@ async def food(ctx):
 
 
 @bot.command(name='location')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def location(ctx):
     """Show venue location."""
     if await redirect_to_help(ctx):
@@ -119,6 +140,7 @@ async def location(ctx):
 
 
 @bot.command(name='schedule')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def schedule(ctx):
     """Show the event schedule."""
     if await redirect_to_help(ctx):
@@ -156,6 +178,7 @@ async def schedule(ctx):
 
 
 @bot.command(name='workshops')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def workshops(ctx):
     """Show workshop information."""
     if await redirect_to_help(ctx):
@@ -169,6 +192,7 @@ async def workshops(ctx):
 
 
 @bot.command(name='categories')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def categories(ctx):
     """Show hackathon categories/tracks."""
     if await redirect_to_help(ctx):
@@ -182,6 +206,7 @@ async def categories(ctx):
 
 
 @bot.command(name='submission')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def submission(ctx):
     """Show submission instructions."""
     if await redirect_to_help(ctx):
@@ -198,6 +223,7 @@ async def submission(ctx):
 
 
 @bot.command(name='faq')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def faq(ctx):
     """Show frequently asked questions."""
     if await redirect_to_help(ctx):
@@ -211,6 +237,7 @@ async def faq(ctx):
 
 
 @bot.command(name='sponsors')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def sponsors(ctx):
     """Show sponsor information."""
     if await redirect_to_help(ctx):
@@ -224,6 +251,7 @@ async def sponsors(ctx):
 
 
 @bot.command(name='checkin')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def checkin(ctx):
     """Show check-in instructions."""
     if await redirect_to_help(ctx):
@@ -247,6 +275,7 @@ async def checkin(ctx):
 
 
 @bot.command(name='troll')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def troll(ctx):
     """A fun troll response."""
     if await redirect_to_help(ctx):
@@ -255,6 +284,7 @@ async def troll(ctx):
 
 
 @bot.command(name='info')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def info(ctx):
     """Show general hackathon information."""
     if await redirect_to_help(ctx):
@@ -268,6 +298,7 @@ async def info(ctx):
 
 
 @bot.command(name='help')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def help_command(ctx):
     """Show help and available commands."""
     embed = discord.Embed(
@@ -293,6 +324,7 @@ async def help_command(ctx):
 
 
 @bot.command(name='commands')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def commands_list(ctx):
     """List all available commands."""
     if await redirect_to_help(ctx):
@@ -321,6 +353,7 @@ async def commands_list(ctx):
 
 
 @bot.command(name='ping')
+@commands.dynamic_cooldown(cooldown_for_non_admins, commands.BucketType.user)
 async def ping(ctx):
     """Check if the bot is responsive."""
     await ctx.send(f'Pong! Latency: {round(bot.latency * 1000)}ms')
