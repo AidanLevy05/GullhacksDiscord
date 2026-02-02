@@ -82,8 +82,25 @@ async def food(ctx):
         return
     embed = discord.Embed(
         title="Food & Meals",
-        description="TODO: Add food/meal information here",
+        description="We've got you covered all weekend!",
         color=discord.Color.blue()
+    )
+    embed.add_field(
+        name="Saturday, November 7th",
+        value=(
+            "1:00 PM – Lunch\n"
+            "7:00 PM – Dinner\n"
+            "11:30 PM – Midnight snack"
+        ),
+        inline=False
+    )
+    embed.add_field(
+        name="Sunday, November 8th",
+        value=(
+            "9:30 AM – Breakfast\n"
+            "12:00 PM – Lunch"
+        ),
+        inline=False
     )
     await ctx.send(embed=embed)
 
@@ -108,8 +125,32 @@ async def schedule(ctx):
         return
     embed = discord.Embed(
         title="Event Schedule",
-        description="TODO: Add schedule here",
+        description="**Gullhacks 2026**",
         color=discord.Color.blue()
+    )
+    embed.add_field(
+        name="Saturday, November 7th",
+        value=(
+            "11:00 AM – Arrival & informal gathering\n"
+            "12:00 PM – Hacking begins\n"
+            "1:00 PM – Lunch\n"
+            "1:00 PM – 4:00 PM – Official check-in\n"
+            "4:00 PM – Opening ceremony\n"
+            "7:00 PM – Dinner\n"
+            "11:30 PM – Midnight snack"
+        ),
+        inline=False
+    )
+    embed.add_field(
+        name="Sunday, November 8th",
+        value=(
+            "9:30 AM – Breakfast\n"
+            "10:00 AM – Mandatory check-in\n"
+            "12:00 PM – Lunch & project submission deadline\n"
+            "12:30 PM – 2:30 PM – Judging period\n"
+            "3:00 PM – Closing ceremony"
+        ),
+        inline=False
     )
     await ctx.send(embed=embed)
 
@@ -147,7 +188,10 @@ async def submission(ctx):
         return
     embed = discord.Embed(
         title="Project Submission",
-        description="TODO: Add submission instructions and Devpost link here",
+        description=(
+            "**Deadline: Sunday, November 8th at 12:00 PM**\n\n"
+            "TODO: Add submission instructions and Devpost link here"
+        ),
         color=discord.Color.blue()
     )
     await ctx.send(embed=embed)
@@ -186,8 +230,18 @@ async def checkin(ctx):
         return
     embed = discord.Embed(
         title="Check-in Information",
-        description="TODO: Add check-in location and instructions here",
+        description="There are two check-in times:",
         color=discord.Color.green()
+    )
+    embed.add_field(
+        name="Saturday, November 7th",
+        value="1:00 PM – 4:00 PM – Official check-in",
+        inline=False
+    )
+    embed.add_field(
+        name="Sunday, November 8th",
+        value="10:00 AM – **Mandatory check-in**",
+        inline=False
     )
     await ctx.send(embed=embed)
 
