@@ -1,43 +1,101 @@
 {
   "questions": [
     {
-      "keywords": ["park", "parking", "car", "vehicle"],
-      "answer": "Parking is available in Lot A and Lot B. Please display your hackathon parking pass on your dashboard."
+      "keywords": [
+        "park",
+        "parking",
+        "car",
+        "vehicle"
+      ],
+      "answer": "Parking is available in Guerreri Academic Commons parking lot."
     },
     {
-      "keywords": ["dinner", "food", "eat", "meal", "lunch", "breakfast"],
-      "answer": "Dinner will be served at 6:00 PM. We're having pizza and salads! Vegetarian and vegan options are available."
+      "keywords": [
+        "dinner",
+        "food",
+        "eat",
+        "meal",
+        "lunch",
+        "breakfast"
+      ],
+      "answer": "Dinner will be served at Guerreri Academic Commons at 6:00pm."
     },
     {
-      "keywords": ["dinner location", "where dinner", "dining", "cafeteria", "food location"],
-      "answer": "Dinner will be served in the Main Hall on the first floor."
+      "keywords": [
+        "dinner location",
+        "where dinner",
+        "dining",
+        "cafeteria",
+        "food location"
+      ],
+      "answer": "Dinner will be served at Guerreri Academic Commons."
     },
     {
-      "keywords": ["wifi", "internet", "network", "connect"],
-      "answer": "WiFi Network: HackathonGuest\nPassword: hack2024"
+      "keywords": [
+        "wifi",
+        "internet",
+        "network",
+        "connect"
+      ],
+      "answer": "WiFi Network: eduroam"
     },
     {
-      "keywords": ["schedule", "time", "when", "agenda", "timeline"],
+      "keywords": [
+        "schedule",
+        "time",
+        "when",
+        "agenda",
+        "timeline"
+      ],
       "answer": "Check out the full schedule at: [Insert schedule link here]\n\nKey times:\n- Check-in: 9:00 AM\n- Opening ceremony: 10:00 AM\n- Hacking begins: 11:00 AM\n- Submissions due: 3:00 PM Sunday\n- Demos: 4:00 PM Sunday"
     },
     {
-      "keywords": ["bathroom", "restroom", "toilet", "washroom"],
+      "keywords": [
+        "bathroom",
+        "restroom",
+        "toilet",
+        "washroom"
+      ],
       "answer": "Restrooms are located on each floor near the elevators."
     },
     {
-      "keywords": ["help", "stuck", "mentor", "question", "assistance"],
-      "answer": "Need help? Look for volunteers in blue shirts or visit the Help Desk in the Main Hall. You can also post in #help-desk on this Discord!"
+      "keywords": [
+        "help",
+        "stuck",
+        "mentor",
+        "question",
+        "assistance"
+      ],
+      "answer": "Need help? Look for volunteers in blue shirts or visit the Help Desk in Guerreri Academic Commons."
     },
     {
-      "keywords": ["submit", "submission", "devpost", "project", "turn in"],
+      "keywords": [
+        "submit",
+        "submission",
+        "devpost",
+        "project",
+        "turn in"
+      ],
       "answer": "Submit your project on Devpost: [Insert Devpost link here]\nDeadline: Sunday at 3:00 PM"
     },
     {
-      "keywords": ["prize", "prizes", "win", "winning", "awards"],
+      "keywords": [
+        "prize",
+        "prizes",
+        "win",
+        "winning",
+        "awards"
+      ],
       "answer": "Prizes will be announced during the closing ceremony! Categories include Best Overall, Best Beginner Hack, Most Creative, and sponsor prizes."
     },
     {
-      "keywords": ["sleep", "sleeping", "rest", "nap", "tired"],
+      "keywords": [
+        "sleep",
+        "sleeping",
+        "rest",
+        "nap",
+        "tired"
+      ],
       "answer": "Quiet rooms for sleeping are available in Rooms 201-203. Please be respectful of others resting."
     }
   ],
