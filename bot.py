@@ -29,7 +29,7 @@ def cooldown_for_non_admins(ctx):
 
 def is_help_channel(channel) -> bool:
     """Check if the channel is the designated help channel."""
-    return channel.name == HELP_CHANNEL_NAME
+    return channel.name in HELP_CHANNEL_NAME
 
 
 async def redirect_to_help(ctx) -> bool:
